@@ -1,5 +1,0 @@
-Aplicacion de entrenamiento
-------------------------------------------------------------------------------------------------------
-La idea de la app es poder registrar cuanto camina o corre una persona a traves del acelerometro y con el sensor de proximidad verificar que lleva el celular encima.
-Los datos se deben guardar en una base de datos SQLite. Estos datos deben ser las estadisticas de los tiempos y aquellos que consideremos relevantes.
-------------------------------------------------------------------------------------------------------
