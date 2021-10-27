@@ -59,3 +59,4 @@ Lo propuesto es registrar login, posible logout, y actividad de los sensores.
 En cada conexion con el servidor, se debe validar el estado de la conexion de
 Internet. En caso de que no haya conexion, se debe mostrar una alerta al usuario
 indicando que no se pudo conectar con Internet.
+En la primer pantalla debera indicar el estado de la bateria.
