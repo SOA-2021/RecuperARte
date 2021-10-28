@@ -1,4 +1,4 @@
-package com.example.recuperarte;
+package com.grupo15.recuperarte;
 
 import android.content.Context;
 

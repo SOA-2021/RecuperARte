@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.recuperarte">
+    package="com.grupo15.recuperarte">
 
     <application
         android:allowBackup="true"
@@ -11,10 +11,10 @@
         android:theme="@style/AppTheme"
         android:fullBackupContent="true">
         <activity
-            android:name=".view.SignUp"
+            android:name="com.grupo15.recuperarte.view.SignUp"
             android:exported="false" />
         <activity
-            android:name=".view.Login"
+            android:name="com.grupo15.recuperarte.view.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

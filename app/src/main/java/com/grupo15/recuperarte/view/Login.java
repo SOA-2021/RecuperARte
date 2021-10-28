@@ -1,4 +1,4 @@
-package com.example.recuperarte.view;
+package com.grupo15.recuperarte.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,11 +6,9 @@ import android.os.Bundle;
 
 import android.content.Intent;
 
-import android.view.View;
-
 import android.widget.TextView;
 
-import com.example.recuperarte.R;
+import com.grupo15.recuperarte.R;
 
 public class Login extends AppCompatActivity {
 
