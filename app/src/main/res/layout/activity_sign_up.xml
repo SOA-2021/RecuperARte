@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up_text"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,41 +51,41 @@
             android:backgroundTint="@color/gray"
             android:hint="@string/name_text"
             android:inputType="text"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:autofillHints="name" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="@color/black"
             android:hint="@string/email_text"
             android:inputType="textEmailAddress"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:autofillHints="emailAddress" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="@color/black"
             android:hint="@string/password_text"
             android:inputType="textPassword"
             android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
+            android:textColorHint="@color/black"
             android:autofillHints="password" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="@color/black"
             android:hint="@string/confirm_password_text"
             android:inputType="textPassword"
-            android:textColor="@color/gray"
-            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:autofillHints="password" />
 
         <TextView
@@ -95,7 +95,7 @@
             android:layout_marginTop="25dp"
             android:text="@string/privacy_text"
             android:textAlignment="center"
-            android:textColor="@color/gray"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <Button
@@ -128,7 +128,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/already_account_text"
-            android:textColor="@color/gray"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <TextView
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="@string/login_text"
-            android:textColor="@color/gray"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
     </LinearLayout>
