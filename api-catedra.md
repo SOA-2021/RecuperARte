@@ -50,6 +50,7 @@ public Token registerUser(User newUser) throws ApiException;
 
 Token {
 	token, token_refresh: string;
+	datetime: LocalDateTime; /* LocalDateTime.now() - datetime > 15m => vencido */
 }
 
 User {
