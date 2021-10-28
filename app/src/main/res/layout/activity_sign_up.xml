@@ -53,7 +53,7 @@
             android:inputType="text"
             android:textColor="@color/gray"
             android:textColorHint="@color/gray"
-            android:autofillHints="" />
+            android:autofillHints="name" />
 
         <EditText
             android:layout_width="match_parent"
@@ -64,7 +64,7 @@
             android:inputType="textEmailAddress"
             android:textColor="@color/gray"
             android:textColorHint="@color/gray"
-            android:autofillHints="" />
+            android:autofillHints="emailAddress" />
 
         <EditText
             android:layout_width="match_parent"
@@ -75,7 +75,7 @@
             android:inputType="textPassword"
             android:textColor="@color/gray"
             android:textColorHint="@color/gray"
-            android:autofillHints="" />
+            android:autofillHints="password" />
 
         <EditText
             android:layout_width="match_parent"
@@ -86,7 +86,7 @@
             android:inputType="textPassword"
             android:textColor="@color/gray"
             android:textColorHint="@color/gray"
-            android:autofillHints="" />
+            android:autofillHints="password" />
 
         <TextView
             android:layout_width="wrap_content"
