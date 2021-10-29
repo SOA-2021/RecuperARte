@@ -19,7 +19,7 @@ public class User {
      * El documento del usuario.
      */
     @Expose
-    private String dni;
+    private Integer dni;
 
     /**
      * El correo electronico del usuario.
@@ -27,7 +27,7 @@ public class User {
     @Expose
     private String email;
 
-    public User(String name, String lastname, String dni, String email) {
+    public User(String name, String lastname, Integer dni, String email) {
         this.name = name;
         this.lastname = lastname;
         this.dni = dni;
@@ -36,6 +36,6 @@ public class User {
 
     public String name() { return this.name; }
     public String lastname() { return this.lastname; }
-    public String dni() { return this.dni; }
+    public Integer dni() { return this.dni; }
     public String email() { return this.email; }
 }

@@ -9,4 +9,15 @@ public class ErrorResponse {
     private String env;
     @Expose
     private String msg;
+
+    public String message() { return this.msg; }
+
+    @Override
+    public String toString() {
+        return "ErrorResponse{" +
+                "success=" + success +
+                ", env='" + env + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

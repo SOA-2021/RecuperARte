@@ -13,15 +13,15 @@ public class RegisterRequest implements IApiRequest {
     @Expose
     public String lastname;
     @Expose
-    public String dni;
+    public Integer dni;
     @Expose
     public String email;
     @Expose
     public String password;
     @Expose
-    public static final int commission = 3900;
+    private final int commission = 3900;
     @Expose
-    public static final int group = 15;
+    private final int group = 15;
 
     /**
      * Crea una request a partir del usuario a registrar.
