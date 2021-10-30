@@ -12,7 +12,7 @@ public interface IApiClient {
      *                      puede deber a que el dispositivo no tiene Internet, o el servidor
      *                      retorna un error.
      */
-    Token registerUser(User newUser) throws ApiException;
+    Token registerUser(User newUser, String password) throws ApiException;
 
     /**
      * Realiza el login de un usuario.
@@ -30,7 +30,7 @@ public interface IApiClient {
      * @return el token renovado. El anterior token ya no es de utilidad.
      * @throws ApiException Igual que {@link #registerUser(User)}
      */
-    Token renewToken(Token t) throws ApiException;
+    Token renewToken() throws ApiException;
 
     /**
      * Registra un evento en el servidor.

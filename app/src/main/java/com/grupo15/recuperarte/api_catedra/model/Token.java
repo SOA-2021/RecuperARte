@@ -43,4 +43,7 @@ public class Token {
     public boolean needsRefresh() {
         return datetime.plusMinutes(REFRESH_TIME).isAfter(LocalDateTime.now());
     }
+
+    public String refresh() { return this.refresh; }
+    @Override public String toString() { return this.token; }
 }

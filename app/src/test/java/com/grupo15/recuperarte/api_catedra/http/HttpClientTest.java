@@ -13,7 +13,8 @@ public class HttpClientTest {
     public void test() throws Exception {
         User u = new User("test", "test", 41523523, "mail@mail.com");
         RegisterRequest r = new RegisterRequest(u, "12345678");
-        TokenResponse res = HttpClient.doPost(
+        IHttpClient http = new HttpClient();
+        TokenResponse res = http.doPost(
                 "http://so-unlam.net.ar/api/api/register",
                 r, TokenResponse.class
         );

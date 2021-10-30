@@ -20,4 +20,6 @@ public class EventResponse {
         @Expose
         private Integer dni;
     }
+
+    public boolean success() { return this.success; }
 }

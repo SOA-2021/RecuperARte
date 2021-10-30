@@ -1,22 +1,18 @@
 package com.grupo15.recuperarte.api_catedra.http;
 
-import android.renderscript.ScriptGroup;
-
 import com.google.gson.Gson;
 import com.grupo15.recuperarte.api_catedra.request.IApiRequest;
 import com.grupo15.recuperarte.api_catedra.response.ErrorResponse;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.nio.Buffer;
 import java.nio.charset.StandardCharsets;
 
-public class HttpClient {
+public class HttpClient implements IHttpClient {
 
     /**
      * Realiza un PUT.
@@ -30,7 +26,8 @@ public class HttpClient {
      * @throws HttpException cuando hay un error de conexion, o cuando la respuesta lleva un estado
      *                       de error (mayor a 300)
      */
-    public static <T>T doPut(String url, String token, IApiRequest req, Class<T> responseClass)
+    @Override
+    public <T>T doPut(String url, String token, IApiRequest req, Class<T> responseClass)
         throws HttpException {
         return doRequest(url, token, "PUT", req, responseClass);
     }
@@ -38,7 +35,8 @@ public class HttpClient {
     /**
      * Similar a {@link #doPut(String, String, IApiRequest, Class)} salvo que realiza un POST
      */
-    public static <T>T doPost(String url, IApiRequest req, Class<T> responseClass)
+    @Override
+    public <T>T doPost(String url, IApiRequest req, Class<T> responseClass)
             throws HttpException {
         return doPost(url, null,  req, responseClass);
     }
@@ -46,12 +44,13 @@ public class HttpClient {
     /**
      * Similar a {@link #doPost(String, IApiRequest, Class)} pero usa token de autenticacion.
      */
-    public static <T>T doPost(String url, String token, IApiRequest req, Class<T> responseClass)
+    @Override
+    public <T>T doPost(String url, String token, IApiRequest req, Class<T> responseClass)
         throws HttpException {
         return doRequest(url, token, "POST", req, responseClass);
     }
 
-    private static <T>T doRequest(
+    private <T>T doRequest(
             String url,
             String token,
             String method,
