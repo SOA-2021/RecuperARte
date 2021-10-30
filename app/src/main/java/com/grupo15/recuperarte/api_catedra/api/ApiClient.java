@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.grupo15.recuperarte.api_catedra.http.HttpException;
 import com.grupo15.recuperarte.api_catedra.http.IHttpClient;
+import com.grupo15.recuperarte.api_catedra.model.LoginEvent;
 import com.grupo15.recuperarte.api_catedra.model.Token;
 import com.grupo15.recuperarte.api_catedra.model.User;
 import com.grupo15.recuperarte.api_catedra.request.EmptyRequest;
@@ -51,6 +52,9 @@ public class ApiClient implements IApiClient {
             TokenResponse res = http.doPost(URL_LOGIN, req, TokenResponse.class);
             if ( !res.success() )
                 throw new ApiException("error inesperado al obtener token");
+
+            /* registro el evento de login in */
+            register(new LoginEvent(email));
 
             Token tok = res.token();
             this.token = tok;
