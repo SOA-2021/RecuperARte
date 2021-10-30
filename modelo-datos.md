@@ -31,7 +31,7 @@ distintas.
 Esta query
 
 ``` sql
-SELECT datetime, sum(meters), sum(datetime)
+SELECT datetime, sum(meters)
 FROM run_data
 GROUP BY date(datetime)
 ```
@@ -39,8 +39,8 @@ GROUP BY date(datetime)
 Permite obtener los datos siguientes
 
 ```
-| Dia        | Metros | Tiempo     |
-| 2021-06-12 | 0.8mt  | 4 segundos |
+| Dia        | Metros |
+| 2021-06-12 | 0.8mt  |
 ```
 
 ## A que hora sale a correr y que dias
