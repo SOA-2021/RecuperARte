@@ -1,6 +1,6 @@
 package com.grupo15.recuperarte.api_catedra.http;
 
-import com.grupo15.recuperarte.api_catedra.User;
+import com.grupo15.recuperarte.api_catedra.model.User;
 import com.grupo15.recuperarte.api_catedra.request.RegisterRequest;
 import com.grupo15.recuperarte.api_catedra.response.TokenResponse;
 

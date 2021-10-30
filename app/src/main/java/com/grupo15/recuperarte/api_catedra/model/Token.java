@@ -1,4 +1,4 @@
-package com.grupo15.recuperarte.api_catedra;
+package com.grupo15.recuperarte.api_catedra.model;
 
 import java.time.LocalDateTime;
 

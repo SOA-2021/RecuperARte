@@ -1,4 +1,7 @@
-package com.grupo15.recuperarte.api_catedra;
+package com.grupo15.recuperarte.api_catedra.api;
+
+import com.grupo15.recuperarte.api_catedra.model.Token;
+import com.grupo15.recuperarte.api_catedra.model.User;
 
 public interface IApiClient {
     /**
@@ -9,7 +12,7 @@ public interface IApiClient {
      *                      puede deber a que el dispositivo no tiene Internet, o el servidor
      *                      retorna un error.
      */
-    public Token registerUser(User newUser) throws ApiException;
+    Token registerUser(User newUser) throws ApiException;
 
     /**
      * Realiza el login de un usuario.
@@ -19,7 +22,7 @@ public interface IApiClient {
      * @throws ApiException cuando sucede un error en la comunicacion con la API. Igual que
      *                      {@link #registerUser(User)}
      */
-    public Token login(String email, String password) throws ApiException;
+    Token login(String email, String password) throws ApiException;
 
     /**
      * Se renueva el periodo del token.
@@ -27,7 +30,7 @@ public interface IApiClient {
      * @return el token renovado. El anterior token ya no es de utilidad.
      * @throws ApiException Igual que {@link #registerUser(User)}
      */
-    public Token renewToken(Token t) throws ApiException;
+    Token renewToken(Token t) throws ApiException;
 
     /**
      * Registra un evento en el servidor.
@@ -35,5 +38,5 @@ public interface IApiClient {
      *          registrar.
      * @throws ApiException Igual que {@link #registerUser(User)}
      */
-    public void register(IRegistrable r) throws ApiException;
+    void register(IRegistrable r) throws ApiException;
 }

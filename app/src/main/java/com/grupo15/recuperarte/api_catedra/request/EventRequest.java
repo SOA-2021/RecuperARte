@@ -3,8 +3,8 @@ package com.grupo15.recuperarte.api_catedra.request;
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-import com.grupo15.recuperarte.api_catedra.EventType;
-import com.grupo15.recuperarte.api_catedra.IRegistrable;
+import com.grupo15.recuperarte.api_catedra.model.EventType;
+import com.grupo15.recuperarte.api_catedra.api.IRegistrable;
 import com.grupo15.recuperarte.global.Conf;
 
 public class EventRequest implements IApiRequest {

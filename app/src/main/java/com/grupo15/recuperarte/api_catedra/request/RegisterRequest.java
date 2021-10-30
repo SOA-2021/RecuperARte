@@ -2,7 +2,7 @@ package com.grupo15.recuperarte.api_catedra.request;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.Expose;
-import com.grupo15.recuperarte.api_catedra.User;
+import com.grupo15.recuperarte.api_catedra.model.User;
 import com.grupo15.recuperarte.global.Conf;
 
 public class RegisterRequest implements IApiRequest {

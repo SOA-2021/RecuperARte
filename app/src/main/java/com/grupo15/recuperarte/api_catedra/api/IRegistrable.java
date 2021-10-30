@@ -1,4 +1,6 @@
-package com.grupo15.recuperarte.api_catedra;
+package com.grupo15.recuperarte.api_catedra.api;
+
+import com.grupo15.recuperarte.api_catedra.model.EventType;
 
 public interface IRegistrable {
     /**
