@@ -17,19 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up_text"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.063"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
-        app:layout_constraintVertical_bias="0.0" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -46,47 +33,64 @@
 
 
         <EditText
+            android:id="@+id/nameField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="name"
             android:backgroundTint="@color/gray"
             android:hint="@string/name_text"
             android:inputType="text"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:autofillHints="name" />
+            android:textColorHint="@color/black" />
 
         <EditText
+            android:id="@+id/lastnameField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:autofillHints="lastname"
+            android:backgroundTint="@color/black"
+            android:hint="@string/lastname_text"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/dniField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints="dni"
+            android:backgroundTint="@color/black"
+            android:hint="@string/dni_text"
+            android:inputType="number"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black" />
+
+        <EditText
+            android:id="@+id/emailField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:autofillHints="emailAddress"
             android:backgroundTint="@color/black"
             android:hint="@string/email_text"
             android:inputType="textEmailAddress"
             android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:autofillHints="emailAddress" />
+            android:textColorHint="@color/black" />
 
         <EditText
+            android:id="@+id/passwordField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:autofillHints="password"
             android:backgroundTint="@color/black"
             android:hint="@string/password_text"
             android:inputType="textPassword"
             android:textColor="@color/gray"
-            android:textColorHint="@color/black"
-            android:autofillHints="password" />
+            android:textColorHint="@color/black" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:backgroundTint="@color/black"
-            android:hint="@string/confirm_password_text"
-            android:inputType="textPassword"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:autofillHints="password" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -99,6 +103,7 @@
             android:textSize="16sp" />
 
         <Button
+            android:id="@+id/btnSignUp"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
