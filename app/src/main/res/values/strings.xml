@@ -8,7 +8,11 @@
     <string name="new_here_text">No posee cuenta?</string>
     <string name="sign_up_text">Crear cuenta</string>
     <string name="name_text">Nombre</string>
+    <string name="lastname_text">Apellido</string>
     <string name="confirm_password_text">Confirmar Password</string>
     <string name="privacy_text">Al crear una cuenta, acepta los \n Términos, uso y Política de privacidad</string>
     <string name="already_account_text">Ya posee una cuenta?</string>
+    <string name="main_text">Mi actividad</string>
+    <string name="mtperday_text">Metros por dia</string>
+    <string name="timerunning_text">Tiempo corriendo</string>
 </resources>
