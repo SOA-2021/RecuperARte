@@ -9,13 +9,11 @@ import com.grupo15.recuperarte.R;
 
 public class SignUp extends AppCompatActivity {
 
-    private TextView tvLogin;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-        tvLogin = findViewById(R.id.textLogin);
+        TextView tvLogin = findViewById(R.id.textLogin);
         tvLogin.setOnClickListener(v -> {
             Intent intent = new Intent(SignUp.this, Login.class);
             startActivity(intent);
