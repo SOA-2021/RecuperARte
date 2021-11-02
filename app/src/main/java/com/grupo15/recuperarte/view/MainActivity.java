@@ -46,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MtPerDayStats.class);
             startActivity(intent);
         });
+
+        Button mtTimeRunningButton = findViewById(R.id.mt_time_running_button);
+        mtTimeRunningButton.setOnClickListener((b) -> {
+            Intent intent = new Intent(this, TimeRunningStats.class);
+            startActivity(intent);
+        });
     }
 
     @Override
