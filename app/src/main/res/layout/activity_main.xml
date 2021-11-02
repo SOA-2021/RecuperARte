@@ -7,7 +7,7 @@
     tools:context=".view.MainActivity">
 
     <Button
-        android:id="@+id/signup_button2"
+        android:id="@+id/mt_perday_button"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -22,7 +22,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/mt_text_view" />
 
     <Button
         android:id="@+id/signup_button3"
@@ -42,7 +42,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signup_button2" />
+        app:layout_constraintTop_toBottomOf="@+id/mt_perday_button" />
 
     <TextView
         android:id="@+id/textView2"
@@ -60,7 +60,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/mt_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="344dp"

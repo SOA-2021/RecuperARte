@@ -17,8 +17,10 @@ import com.grupo15.recuperarte.sensor.ProximityData;
  * Es el hilo background encargado de realizar las acciones de fondo de la pantalla principal
  */
 public class MainBackground implements Runnable, SensorEventListener {
+    /* 3 metros por segundo siginfica que esta corriendo */
+    private static final float MT_THRESHOLD = 3;
     private static final long SLEEP_MS  = 1000;
-    private static final long SLEEP_SEC = 1;
+    private static final long MS_TO_SEC  = 1000;
 
     private final IApiClient api;
     private final RunDataDAO dao;
@@ -28,6 +30,8 @@ public class MainBackground implements Runnable, SensorEventListener {
     private final float accMaxVal;
     private ProximityData proximity;
     private final boolean proximityIsBinary;
+    private long lastTime = System.currentTimeMillis();
+    private float centimeters;
 
     public MainBackground(SensorManager sm, IApiClient api, RunDataDAO dao) {
         this.api = api;
@@ -72,27 +76,37 @@ public class MainBackground implements Runnable, SensorEventListener {
         try {
             /* Registro actividad del acelerometro */
             api.register(this.accelerometer);
+            Log.d(
+                    "[MAIN]",
+                    String.format("Registro acelerometro: %s", this.accelerometer.toString())
+            );
 
             /* Registro actividad del sensor de proximidad */
             api.register(this.proximity);
+            Log.d(
+                    "[MAIN]",
+                    String.format("Registro proximidad: %s", this.proximity.toString())
+            );
         } catch ( ApiException e ) {
             Log.d("REG", e.getMessage(), e);
         }
 
         /* Persisto en la base de datos los metros recorridos */
+        float metersWalked = this.centimeters/1000;
         RunData runData = new RunData(
-                this.accelerometer.metersWalked(SLEEP_SEC),
-                this.accelerometer.isRunning()
+                metersWalked,
+                metersWalked > MT_THRESHOLD
         );
-        dao.save(runData);
+        this.centimeters = 0;
+
+        if ( metersWalked != 0 ) {
+            dao.save(runData);
+            Log.d("[MAIN]", String.format("Registro runData: %s", runData.toString()));
+        }
     }
 
     public synchronized void terminate() {
         this.shouldContinue = false;
-    }
-
-    public synchronized boolean shouldContinue() {
-        return this.shouldContinue;
     }
 
     @Override
@@ -108,7 +122,12 @@ public class MainBackground implements Runnable, SensorEventListener {
     }
 
     public synchronized void handleAccelerometer(SensorEvent evt) {
+        long now = System.currentTimeMillis();
+        AccelerometerData previous = this.accelerometer;
         this.accelerometer = new AccelerometerData(evt, this.accMaxVal);
+        if ( previous != null ) {
+            this.centimeters += previous.metersWalked(this.accelerometer, (now - lastTime)/MS_TO_SEC);
+        }
     }
 
     public synchronized void handleProximity(SensorEvent evt) {

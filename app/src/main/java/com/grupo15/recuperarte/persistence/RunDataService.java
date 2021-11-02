@@ -26,6 +26,11 @@ public class RunDataService {
         private final LocalDate date;
         private final double meters;
 
+        public MtPerDay(double meters) {
+            this.date = LocalDate.now();
+            this.meters = meters;
+        }
+
         public MtPerDay(Map.Entry<LocalDate, Double> entry) {
             this.date = entry.getKey();
             this.meters = entry.getValue();
@@ -44,6 +49,17 @@ public class RunDataService {
         }
         public DayOfWeek getDay() { return day; }
         public LocalTime getTime() { return time; }
+    }
+
+    /**
+     * Devuelve los metros recorridos *hoy*
+     */
+    public MtPerDay getMtToday() {
+        List<MtPerDay> l = listMtPerDay();
+        return l.stream()
+                .filter(m -> m.getDate().equals(LocalDate.now()))
+                .findFirst()
+                .orElse(new MtPerDay(0));
     }
 
     /**

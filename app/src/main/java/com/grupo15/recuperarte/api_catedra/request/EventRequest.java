@@ -9,7 +9,7 @@ import com.grupo15.recuperarte.global.Conf;
 
 public class EventRequest implements IApiRequest {
     @Expose
-    public static final String env = Conf.ENV;
+    public String env;
     @Expose
     @SerializedName("type_events")
     public EventType type;
@@ -20,6 +20,7 @@ public class EventRequest implements IApiRequest {
      * Crea una request de evento a partir de un objeto registrable.
      */
     public EventRequest(IRegistrable r) {
+        this.env = Conf.ENV;
         this.type = r.type();
         this.description = r.description();
     }

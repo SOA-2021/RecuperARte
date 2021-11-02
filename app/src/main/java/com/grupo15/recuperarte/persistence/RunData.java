@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 
 import static com.grupo15.recuperarte.persistence.RunDataContract.RunDataEntry;
 
+import com.grupo15.recuperarte.sensor.AccelerometerData;
+
 /**
  * Modelo que representa la estructura interna dentro de
  * la base de datos.
@@ -39,4 +41,13 @@ public class RunData implements ISQLObj {
     public float getMeters() { return meters; }
     public boolean isRunning() { return isRunning; }
     public LocalDateTime getDate() { return dt; }
+
+    @Override
+    public String toString() {
+        return "RunData{" +
+                "meters=" + meters +
+                ", isRunning=" + isRunning +
+                ", dt=" + dt +
+                '}';
+    }
 }
