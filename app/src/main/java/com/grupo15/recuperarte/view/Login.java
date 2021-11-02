@@ -75,9 +75,7 @@ public class Login extends AppCompatActivity {
             Conf c = Conf.getInstance();
             IApiClient api = c.apiClient();
             try {
-                //api.login(email, password);
-                User newUser = new User("leo", "san martin", 123, email);
-                api.registerUser(newUser, password);
+                api.login(email, password);
                 IntentIntegrator integrator = new IntentIntegrator(Login.this);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
                 integrator.setPrompt("LECTOR DE CODIGO QR");
