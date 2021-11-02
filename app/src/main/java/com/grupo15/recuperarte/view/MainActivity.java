@@ -2,8 +2,10 @@ package com.grupo15.recuperarte.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.grupo15.recuperarte.R;
@@ -33,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
             RunDataService.MtPerDay meters = service.getMtToday();
             TextView t = findViewById(R.id.mt_text_view);
             t.setText(String.format("%.2f mt", meters.getMeters()));
+        });
+
+        Button mtPerDayButton = findViewById(R.id.mt_perday_button);
+        mtPerDayButton.setOnClickListener((b) -> {
+            Intent intent = new Intent(this, MtPerDayStats.class);
+            startActivity(intent);
         });
     }
 

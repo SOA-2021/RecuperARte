@@ -17,6 +17,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".view.MtPerDayStats"
+            android:exported="true" />
+        <activity
             android:name=".view.MainActivity"
             android:exported="true" />
         <activity
