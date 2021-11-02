@@ -20,15 +20,14 @@ public interface IApiClient {
      * @param password la contraseña ingresada por el usuario.
      * @return el token con el cual se debe hacer el resto de las comunicaciones.
      * @throws ApiException cuando sucede un error en la comunicacion con la API. Igual que
-     *                      {@link #registerUser(User)}
+     *                      {@link #registerUser(User, String)}
      */
     Token login(String email, String password) throws ApiException;
 
     /**
      * Se renueva el periodo del token.
-     * @param t el token que se quiere renovar.
      * @return el token renovado. El anterior token ya no es de utilidad.
-     * @throws ApiException Igual que {@link #registerUser(User)}
+     * @throws ApiException Igual que {@link #registerUser(User, String)}
      */
     Token renewToken() throws ApiException;
 
@@ -36,7 +35,7 @@ public interface IApiClient {
      * Registra un evento en el servidor.
      * @param r un elemento registrable. Por ejemplo, un evento de algun sensor que se quiera 
      *          registrar.
-     * @throws ApiException Igual que {@link #registerUser(User)}
+     * @throws ApiException Igual que {@link #registerUser(User, String)}
      */
     void register(IRegistrable r) throws ApiException;
 }

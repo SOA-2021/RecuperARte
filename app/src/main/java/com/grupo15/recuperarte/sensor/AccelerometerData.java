@@ -12,44 +12,42 @@ public class AccelerometerData implements IRegistrable {
     private static final int ACC_Y_VAL = 1;
     private static final int ACC_Z_VAL = 2;
 
-    public float xVal, yVal, zVal, maxVal;
+    public float xAcc, yAcc, zAcc, maxVal;
+    /* velocities */
+    public float xVel, yVel, zVel;
+    /* Position */
+    public float xPos, yPos, zPos;
 
     public AccelerometerData(SensorEvent evt, float maxVal) {
-        this.xVal = evt.values[ACC_X_VAL];
-        this.yVal = evt.values[ACC_Y_VAL];
-        this.zVal = evt.values[ACC_Z_VAL];
+        this.xAcc = evt.values[ACC_X_VAL];
+        this.yAcc = evt.values[ACC_Y_VAL];
+        this.zAcc = evt.values[ACC_Z_VAL];
         this.maxVal = maxVal;
     }
 
-    public float metersWalked(long seconds) {
-        return this.metersWalked(xVal, seconds) + this.metersWalked(yVal, seconds);
-    }
+    public float metersWalked(AccelerometerData newPoint, float seconds) {
+        float xAcc = newPoint.xAcc - this.xAcc;
+        float yAcc = newPoint.yAcc - this.yAcc;
+        float zAcc = newPoint.zAcc - this.zAcc;
+        /* Integro la aceleracion para obtener velocidad */
+        xVel += xAcc*seconds;
+        yVel += yAcc*seconds;
+        zVel += zAcc*seconds;
 
-    private float metersWalked(float acc, long seconds) {
-        /* dado que la aceleracion puede ser negativa */
-        acc = Math.abs(acc);
+        float oldXPos = xPos, oldYPos = yPos, oldZPos = zPos;
+        /* Integro velocidad para obtener posicion */
+        xPos += xVel*seconds;
+        yPos += yVel*seconds;
+        zPos += zVel*seconds;
 
-        /* velocidad = aceleracion * seg */
-        final float vel = acc * seconds;
-
-        /* espacio recorrido = velocidad * seg + aceleracion * seg^2 */
-        return vel * seconds + (acc) * seconds;
-    }
-
-    public boolean isRunning() {
-        float acc = Math.abs(this.xVal);
-        if ( acc > this.maxVal/2 ) return true;
-
-        acc = Math.abs(this.yVal);
-        if ( acc > this.maxVal/2 ) return true;
-
-        return false;
+        /* La diferencia de posicion da la cantidad caminada */
+        return Math.abs(xPos - oldXPos) + Math.abs(yPos - oldYPos) + Math.abs(zPos - oldZPos);
     }
 
     @NonNull
     @Override
     public String toString() {
-        return String.format("X: %fm/s^2\nY: %fm/s^2\nZ: %fm/s^2\n", xVal, yVal, zVal);
+        return String.format("X: %fm/s^2\nY: %fm/s^2\nZ: %fm/s^2\n", xAcc, yAcc, zAcc);
     }
 
     @Override public EventType type() { return EventType.ACCELEROMETER; }
