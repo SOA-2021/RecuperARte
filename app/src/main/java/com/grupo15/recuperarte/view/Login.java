@@ -21,6 +21,7 @@ import com.google.zxing.integration.android.IntentResult;
 import com.grupo15.recuperarte.R;
 import com.grupo15.recuperarte.api_catedra.api.ApiException;
 import com.grupo15.recuperarte.api_catedra.api.IApiClient;
+import com.grupo15.recuperarte.api_catedra.model.User;
 import com.grupo15.recuperarte.global.Conf;
 
 public class Login extends AppCompatActivity {
@@ -74,7 +75,9 @@ public class Login extends AppCompatActivity {
             Conf c = Conf.getInstance();
             IApiClient api = c.apiClient();
             try {
-                api.login(email, password);
+                //api.login(email, password);
+                User newUser = new User("leo", "san martin", 123, email);
+                api.registerUser(newUser, password);
                 IntentIntegrator integrator = new IntentIntegrator(Login.this);
                 integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE);
                 integrator.setPrompt("LECTOR DE CODIGO QR");
