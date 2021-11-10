@@ -87,12 +87,12 @@ public class MainBackground implements Runnable, SensorEventListener {
                 /* Registro actividad del sensor de proximidad */
                 api.register(this.proximity);
                 Log.d(
-                        "[MAIN]",
-                        String.format("Registro proximidad: %s", this.proximity.toString())
+                    "[MAIN]",
+                    String.format("Registro proximidad: %s", this.proximity.toString())
                 );
             }
         } catch ( ApiException e ) {
-            Log.d("REG", e.getMessage(), e);
+            Log.e("[API]", e.getMessage(), e);
         }
 
         /* Persisto en la base de datos los metros recorridos */
