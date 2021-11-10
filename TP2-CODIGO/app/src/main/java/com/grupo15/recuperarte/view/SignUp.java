@@ -46,18 +46,20 @@ public class SignUp extends AppCompatActivity {
 
         EditText nameInput = findViewById(R.id.name_input);
         EditText lastnameInput = findViewById(R.id.lastname_input);
+        EditText dniInput = findViewById(R.id.dni_input);
         EditText emailInput = findViewById(R.id.email_input);
         EditText passwordInput = findViewById(R.id.password_input);
 
         String name = nameInput.getText().toString();
         String lastname = lastnameInput.getText().toString();
+        Integer dni = Integer.parseInt(dniInput.getText().toString());
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
 
         new Thread(()-> {
             Conf c = Conf.getInstance();
             IApiClient api = c.apiClient();
-            User newUser = new User(name, lastname, 123, email);
+            User newUser = new User(name, lastname, dni, email);
             try {
                 api.registerUser(newUser, password);
                 handler.post(this::onSuccess);
