@@ -20,9 +20,12 @@ import com.grupo15.recuperarte.api_catedra.api.ApiException;
 import com.grupo15.recuperarte.api_catedra.api.IApiClient;
 import com.grupo15.recuperarte.api_catedra.model.User;
 import com.grupo15.recuperarte.global.Conf;
+import com.grupo15.recuperarte.mvp.ISignUp;
+import com.grupo15.recuperarte.presenter.SignUpPresenter;
 
-public class SignUp extends AppCompatActivity {
-    Handler handler = HandlerCompat.createAsync(Looper.getMainLooper());
+public class SignUp extends AppCompatActivity implements ISignUp.View {
+    private Button signUpButton;
+    private ISignUp.Presenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +34,24 @@ public class SignUp extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
+
+        /* El link hacia el login desde la pantalla de registro */
         TextView tvLogin = findViewById(R.id.textLogin);
         tvLogin.setOnClickListener(v -> {
             Intent intent = new Intent(SignUp.this, Login.class);
             startActivity(intent);
             finish();
         });
-        Button signup = findViewById(R.id.signup_button);
-        signup.setOnClickListener(b -> doSignUp((Button)b));
+
+        /* Boton de registro. Si lo aprieta, mando a registrar */
+        signUpButton = findViewById(R.id.signup_button);
+        signUpButton.setOnClickListener(b -> doSignUp());
+
+        this.presenter = new SignUpPresenter(this);
     }
 
-    private void doSignUp(Button b) {
-        b.setActivated(false);
+    private void doSignUp() {
+        signUpButton.setActivated(false);
 
         EditText nameInput = findViewById(R.id.name_input);
         EditText lastnameInput = findViewById(R.id.lastname_input);
@@ -52,24 +61,15 @@ public class SignUp extends AppCompatActivity {
 
         String name = nameInput.getText().toString();
         String lastname = lastnameInput.getText().toString();
-        Integer dni = Integer.parseInt(dniInput.getText().toString());
+        String dni = dniInput.getText().toString();
         String email = emailInput.getText().toString();
         String password = passwordInput.getText().toString();
 
-        new Thread(()-> {
-            Conf c = Conf.getInstance();
-            IApiClient api = c.apiClient();
-            User newUser = new User(name, lastname, dni, email);
-            try {
-                api.registerUser(newUser, password);
-                handler.post(this::onSuccess);
-            } catch ( ApiException e ) {
-                handler.post(() -> onError(b, String.format("Error: %s", e.getMessage())));
-            }
-        }).start();
+        this.presenter.registerUser(name, lastname, dni, email, password);
     }
 
-    private void onSuccess() {
+    @Override
+    public void registerOnSuccess() {
         Toast.makeText(
                 getBaseContext(),
                 "Registro correcto",
@@ -80,11 +80,12 @@ public class SignUp extends AppCompatActivity {
         finish();
     }
 
-    private void onError(Button b, String errMsg) {
-        b.setActivated(true);
+    @Override
+    public void registerOnError(String errorMessage) {
+        signUpButton.setActivated(true);
         Toast.makeText(
                 getBaseContext(),
-                errMsg,
+                errorMessage,
                 Toast.LENGTH_SHORT
         ).show();
     }
