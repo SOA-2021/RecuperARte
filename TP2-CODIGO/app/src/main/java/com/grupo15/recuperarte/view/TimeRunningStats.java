@@ -12,14 +12,17 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.grupo15.recuperarte.R;
+import com.grupo15.recuperarte.mvp.ITimeStat;
 import com.grupo15.recuperarte.persistence.RunDataService;
+import com.grupo15.recuperarte.presenter.TimeRunningPresenter;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 
-public class TimeRunningStats extends AppCompatActivity {
+public class TimeRunningStats extends AppCompatActivity implements ITimeStat.View {
+    private TableLayout table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +31,7 @@ public class TimeRunningStats extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_time_running_stats);
-        TableLayout table = findViewById(R.id.table_mt_perday);
+        this.table = findViewById(R.id.table_mt_perday);
 
         TableRow tbrow0 = new TableRow(this);
         TextView tv0 = new TextView(this);
@@ -43,21 +46,26 @@ public class TimeRunningStats extends AppCompatActivity {
         table.addView(tbrow0);
 
         RunDataService rdService = new RunDataService(getBaseContext());
-        List<RunDataService.TimeRunning> timeRunning = rdService.listTimeRunning();
-        for(int i = 0;i< timeRunning.size();i++){
+        ITimeStat.Presenter presenter = new TimeRunningPresenter(this);
+        presenter.getTimeRunning(rdService);
+    }
+
+    @Override
+    public void drawTable(List<RunDataService.TimeRunning> timeRunning) {
+        for ( RunDataService.TimeRunning t: timeRunning ) {
             TableRow tbrow = new TableRow(this);
             TextView t1v = new TextView(this);
-            t1v.setText(timeRunning.get(i).getTime().format(DateTimeFormatter.ofPattern("HH:mm"))+"   ");
+            t1v.setText(t.getTime().format(DateTimeFormatter.ofPattern("HH:mm"))+"   ");
             t1v.setTextColor(Color.BLACK);
-            t1v.setGravity(Gravity.LEFT);
+            t1v.setGravity(Gravity.START );
             tbrow.addView(t1v);
 
             TextView t2v = new TextView(this);
-            t2v.setText(timeRunning.get(i).getDay().getDisplayName(TextStyle.SHORT, Locale.getDefault()));
+            t2v.setText(t.getDay().getDisplayName(TextStyle.SHORT, Locale.getDefault()));
             t2v.setTextColor(Color.BLACK);
-            t2v.setGravity(Gravity.RIGHT);
+            t2v.setGravity(Gravity.END);
             tbrow.addView(t2v);
-            table.addView(tbrow);
+            this.table.addView(tbrow);
         }
     }
 }
