@@ -1,5 +1,8 @@
 package com.grupo15.recuperarte.api_catedra.http;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import com.google.gson.Gson;
 import com.grupo15.recuperarte.api_catedra.request.IApiRequest;
 import com.grupo15.recuperarte.api_catedra.response.ErrorResponse;
@@ -13,7 +16,6 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class HttpClient implements IHttpClient {
-
     /**
      * Realiza un PUT.
      * @param url la url a la cual golpear

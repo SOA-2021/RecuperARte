@@ -11,13 +11,13 @@ public interface ISignUp {
         /**
          * En caso de que el registro sea exitoso, ejecuta este metodo.
          */
-        void registerOnSuccess();
+        void onRegisterSuccess();
 
         /**
          * En caso de que el registro falle, ejecuta este metodo.
          * Muestra un mensaje de error con un Toast.
          * @param errorMessage el mensaje a mostrar.
          */
-        void registerOnError(String errorMessage);
+        void onRegisterError(String errorMessage);
     }
 }

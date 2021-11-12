@@ -11,18 +11,28 @@ import com.grupo15.recuperarte.api_catedra.api.ApiException;
 import com.grupo15.recuperarte.api_catedra.api.IApiClient;
 import com.grupo15.recuperarte.global.Conf;
 import com.grupo15.recuperarte.mvp.ILogin;
+import com.grupo15.recuperarte.network.NetworkChecker;
 
 public class LoginPresenter implements ILogin.Presenter {
     private static final String QR_CODE = "123456789";
 
     private final ILogin.View view;
+    private final NetworkChecker network;
     private final Handler handler = HandlerCompat.createAsync(Looper.getMainLooper());
 
-    public LoginPresenter(ILogin.View view) { this.view = view; }
+    public LoginPresenter(ILogin.View view, NetworkChecker network) {
+        this.view = view;
+        this.network = network;
+    }
 
     @Override
     public void login(String email, String password) {
         new Thread(()-> {
+            if ( !network.isConnected() ) {
+                handler.post(() -> this.view.onLoginError("No esta conectado a Internet"));
+                return;
+            }
+
             Conf c = Conf.getInstance();
             IApiClient api = c.apiClient();
             try {

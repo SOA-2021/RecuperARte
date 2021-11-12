@@ -2,7 +2,9 @@ package com.grupo15.recuperarte.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Window;
@@ -10,9 +12,11 @@ import android.view.WindowManager;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.grupo15.recuperarte.R;
 import com.grupo15.recuperarte.mvp.ITimeStat;
+import com.grupo15.recuperarte.network.NetworkChecker;
 import com.grupo15.recuperarte.persistence.RunDataService;
 import com.grupo15.recuperarte.presenter.TimeRunningPresenter;
 
@@ -45,8 +49,9 @@ public class TimeRunningStats extends AppCompatActivity implements ITimeStat.Vie
         tbrow0.addView(tv1);
         table.addView(tbrow0);
 
-        RunDataService rdService = new RunDataService(getBaseContext());
         ITimeStat.Presenter presenter = new TimeRunningPresenter(this);
+
+        RunDataService rdService = new RunDataService(getBaseContext());
         presenter.getTimeRunning(rdService);
     }
 
@@ -67,5 +72,14 @@ public class TimeRunningStats extends AppCompatActivity implements ITimeStat.Vie
             tbrow.addView(t2v);
             this.table.addView(tbrow);
         }
+    }
+
+    @Override
+    public void onError(String error) {
+        Toast.makeText(
+                getBaseContext(),
+                error,
+                Toast.LENGTH_SHORT
+        ).show();
     }
 }

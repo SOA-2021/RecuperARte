@@ -10,5 +10,6 @@ public interface IMtPerDay {
     }
     interface View {
         void drawTable(List<RunDataService.MtPerDay> mtPerDay);
+        void onError(String error);
     }
 }

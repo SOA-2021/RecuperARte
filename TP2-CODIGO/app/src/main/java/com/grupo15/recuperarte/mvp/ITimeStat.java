@@ -10,5 +10,6 @@ public interface ITimeStat {
     }
     interface View {
         void drawTable(List<RunDataService.TimeRunning> timeRunning);
+        void onError(String error);
     }
 }

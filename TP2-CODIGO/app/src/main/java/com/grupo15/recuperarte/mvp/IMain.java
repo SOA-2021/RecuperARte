@@ -10,5 +10,9 @@ public interface IMain {
         void runBackground(SensorManager sm, RunDataDAO dao);
         void terminateBackground();
     }
-    interface View { }
+    interface View {
+        void updateMeters(RunDataService.MtPerDay mt);
+        void alertProximity();
+        void onError(String error);
+    }
 }

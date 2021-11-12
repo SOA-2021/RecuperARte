@@ -2,6 +2,8 @@ package com.grupo15.recuperarte.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import android.content.Intent;
@@ -17,6 +19,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.grupo15.recuperarte.R;
 import com.grupo15.recuperarte.mvp.ILogin;
+import com.grupo15.recuperarte.network.NetworkChecker;
 import com.grupo15.recuperarte.presenter.LoginPresenter;
 
 public class Login extends AppCompatActivity implements ILogin.View {
@@ -43,7 +46,10 @@ public class Login extends AppCompatActivity implements ILogin.View {
         loginButton = findViewById(R.id.btnLogin);
         loginButton.setOnClickListener(b -> doLogin());
 
-        this.presenter = new LoginPresenter(this);
+        final ConnectivityManager cm = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkChecker nc = new NetworkChecker(cm);
+        this.presenter = new LoginPresenter(this, nc);
     }
 
     @Override

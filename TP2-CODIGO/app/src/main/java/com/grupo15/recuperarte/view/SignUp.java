@@ -1,6 +1,8 @@
 package com.grupo15.recuperarte.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -21,6 +23,7 @@ import com.grupo15.recuperarte.api_catedra.api.IApiClient;
 import com.grupo15.recuperarte.api_catedra.model.User;
 import com.grupo15.recuperarte.global.Conf;
 import com.grupo15.recuperarte.mvp.ISignUp;
+import com.grupo15.recuperarte.network.NetworkChecker;
 import com.grupo15.recuperarte.presenter.SignUpPresenter;
 
 public class SignUp extends AppCompatActivity implements ISignUp.View {
@@ -47,7 +50,10 @@ public class SignUp extends AppCompatActivity implements ISignUp.View {
         signUpButton = findViewById(R.id.signup_button);
         signUpButton.setOnClickListener(b -> doSignUp());
 
-        this.presenter = new SignUpPresenter(this);
+        final ConnectivityManager cm = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        final NetworkChecker nc = new NetworkChecker(cm);
+        this.presenter = new SignUpPresenter(this, nc);
     }
 
     private void doSignUp() {
@@ -69,7 +75,7 @@ public class SignUp extends AppCompatActivity implements ISignUp.View {
     }
 
     @Override
-    public void registerOnSuccess() {
+    public void onRegisterSuccess() {
         Toast.makeText(
                 getBaseContext(),
                 "Registro correcto",
@@ -81,7 +87,7 @@ public class SignUp extends AppCompatActivity implements ISignUp.View {
     }
 
     @Override
-    public void registerOnError(String errorMessage) {
+    public void onRegisterError(String errorMessage) {
         signUpButton.setActivated(true);
         Toast.makeText(
                 getBaseContext(),

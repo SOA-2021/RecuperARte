@@ -1,6 +1,8 @@
 package com.grupo15.recuperarte.view;
 
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Window;
@@ -9,11 +11,13 @@ import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.grupo15.recuperarte.R;
 import com.grupo15.recuperarte.mvp.IMtPerDay;
+import com.grupo15.recuperarte.network.NetworkChecker;
 import com.grupo15.recuperarte.persistence.RunDataService;
 import com.grupo15.recuperarte.presenter.MtPerDayPresenter;
 
@@ -70,5 +74,14 @@ public class MtPerDayStats extends AppCompatActivity implements IMtPerDay.View {
             tbrow.addView(t2v);
             this.table.addView(tbrow);
         }
+    }
+
+    @Override
+    public void onError(String error) {
+        Toast.makeText(
+                getBaseContext(),
+                error,
+                Toast.LENGTH_SHORT
+        ).show();
     }
 }
